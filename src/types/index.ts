@@ -80,6 +80,16 @@ export interface FAQItem {
   answer: string;
 }
 
+export interface QuestionAnswerItem {
+  question: string;
+  directAnswer: string;
+  detailedExplanation: string[];
+  relatedLink?: {
+    text: string;
+    url: string;
+  };
+}
+
 export interface BlogArticle {
   id: string;
   slug: string;
@@ -103,6 +113,7 @@ export interface BlogArticle {
     budget: string;
   };
   sections: BlogSection[];
+  aeoQuestions?: QuestionAnswerItem[];
   highlights: string[];
   suggestedItinerary?: SuggestedItineraryDay[];
   travelTips: string[];

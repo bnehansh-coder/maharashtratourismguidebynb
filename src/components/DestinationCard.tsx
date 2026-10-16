@@ -86,12 +86,13 @@ export const DestinationCard: React.FC<DestinationCardProps> = ({
           </div>
         </div>
 
-        {/* Explore More Button */}
+        {/* Descriptive Destination CTA Button */}
         <button
           onClick={() => onSelect(destination.slug)}
+          aria-label={`Explore complete travel guide for ${destination.name}, ${destination.region}`}
           className="w-full py-2.5 px-4 rounded-xl text-xs font-bold uppercase tracking-wider text-[#164E3D] bg-[#F2EDE1] hover:bg-[#164E3D] hover:text-white transition-all flex items-center justify-center gap-2 group-hover:border-[#164E3D]"
         >
-          <span>Explore More</span>
+          <span>Explore {destination.name} Guide</span>
           <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
         </button>
       </div>

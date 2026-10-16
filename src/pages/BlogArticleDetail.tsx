@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Clock, Calendar, Bookmark, Share2, ArrowRight, ChevronRight, Check, Copy, MessageCircle, Facebook, Twitter, HelpCircle, Utensils, AlertTriangle, Compass, MapPin } from 'lucide-react';
+import { Clock, Calendar, Bookmark, Share2, ArrowRight, ChevronRight, Check, Copy, MessageCircle, Facebook, Twitter, HelpCircle, Utensils, AlertTriangle, Compass, MapPin, Sparkles } from 'lucide-react';
 import { BLOGS } from '../data/blogs';
 import { DESTINATIONS } from '../data/destinations';
 import { SafeImage } from '../components/SafeImage';
+import { applySEO } from '../utils/seo';
 
 interface BlogArticleDetailProps {
   slug: string;
@@ -24,6 +25,63 @@ export const BlogArticleDetail: React.FC<BlogArticleDetailProps> = ({
   const article = BLOGS.find((b) => b.slug === slug) || BLOGS[0];
 
   useEffect(() => {
+    // Generate Article Schema and FAQPage Schema
+    const articleSchema = {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'BlogPosting',
+          '@id': `https://maharashtratourismguidebynbatra.vercel.app/blogs/${article.slug}#article`,
+          headline: article.title,
+          description: article.excerpt,
+          image: article.heroImage,
+          datePublished: '2026-09-01T08:00:00+05:30',
+          dateModified: '2026-10-15T12:00:00+05:30',
+          author: {
+            '@type': 'Person',
+            name: article.author.name,
+            jobTitle: article.author.role
+          },
+          publisher: {
+            '@type': 'Organization',
+            name: 'Maharashtra Tourism Portal',
+            logo: {
+              '@type': 'ImageObject',
+              url: 'https://images.unsplash.com/photo-1596176530529-78163a4f7af2?auto=format&fit=crop&w=600&q=80'
+            }
+          },
+          mainEntityOfPage: `https://maharashtratourismguidebynbatra.vercel.app/blogs/${article.slug}`
+        },
+        {
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://maharashtratourismguidebynbatra.vercel.app/' },
+            { '@type': 'ListItem', position: 2, name: 'Travel Blogs', item: 'https://maharashtratourismguidebynbatra.vercel.app/blogs' },
+            { '@type': 'ListItem', position: 3, name: article.title, item: `https://maharashtratourismguidebynbatra.vercel.app/blogs/${article.slug}` }
+          ]
+        },
+        {
+          '@type': 'FAQPage',
+          mainEntity: (article.faqs || []).map((faq) => ({
+            '@type': 'Question',
+            name: faq.question,
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: faq.answer
+            }
+          }))
+        }
+      ]
+    };
+
+    applySEO(
+      `/blogs/${article.slug}`,
+      `${article.title} | Maharashtra Travel Guide`,
+      article.excerpt,
+      article.heroImage,
+      articleSchema
+    );
+
     const handleScroll = () => {
       const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
       if (totalHeight > 0) {
@@ -32,7 +90,7 @@ export const BlogArticleDetail: React.FC<BlogArticleDetailProps> = ({
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [article.slug]);
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(window.location.href);

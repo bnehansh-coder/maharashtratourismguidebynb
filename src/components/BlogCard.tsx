@@ -117,9 +117,10 @@ export const BlogCard: React.FC<BlogCardProps> = ({
 
           <button
             onClick={() => onSelect(article.slug)}
-            className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#D95D0F] group-hover:text-[#b34805] group-hover:translate-x-0.5 transition-all"
+            aria-label={`Read complete article: ${article.title}`}
+            className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#D95D0F] hover:text-[#b34805] group-hover:translate-x-0.5 transition-all"
           >
-            <span>Read Article</span>
+            <span>Read Full Story</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </button>
         </div>

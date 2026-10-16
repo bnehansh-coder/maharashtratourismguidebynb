@@ -175,7 +175,7 @@ export const Home: React.FC<HomeProps> = ({
                     {exp.description}
                   </p>
                   <div className="mt-3 flex items-center gap-1.5 text-xs font-bold text-amber-300 group-hover:translate-x-1 transition-transform">
-                    <span>Discover</span>
+                    <span>Explore {exp.title}</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </div>
                 </div>
@@ -592,6 +592,188 @@ export const Home: React.FC<HomeProps> = ({
                 </div>
               </div>
             )}
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================
+          AEO & ESSENTIAL VISITOR QUESTIONS (Q&A SECTION)
+          ======================================================== */}
+      <section className="py-20 bg-white border-b border-[#E8DEC8]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="text-[#D95D0F] font-bold text-xs uppercase tracking-widest px-3 py-1 rounded-full bg-[#D95D0F]/10 border border-[#D95D0F]/20 inline-block mb-3">
+              Visitor Knowledge Hub
+            </span>
+            <h2 className="font-heading text-3xl sm:text-4xl font-bold text-[#24211D]">
+              Maharashtra Travel: Key Questions & Answers
+            </h2>
+            <p className="text-sm sm:text-base text-[#6B5E4F] mt-2">
+              Verified answers to help domestic and international tourists plan a comfortable journey across Maharashtra.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-16">
+            {/* Question 1 */}
+            <div className="bg-[#FAF7F2] rounded-3xl p-8 border border-[#E8DEC8] flex flex-col justify-between">
+              <div>
+                <span className="text-[11px] font-bold uppercase tracking-wider text-[#164E3D] block mb-2">
+                  Destination Selection
+                </span>
+                <h2 className="font-heading text-2xl font-bold text-[#24211D] mb-4">
+                  What are the best places to visit in Maharashtra?
+                </h2>
+                <div className="space-y-4 text-sm text-[#4A3E31] leading-relaxed">
+                  <p className="font-medium text-[#1A1815] bg-white p-4 rounded-xl border-l-4 border-[#D95D0F]">
+                    The best places to visit in Maharashtra span five diverse travel zones: Mumbai for metropolitan heritage, coastal promenades, and street food; Pune, Raigad, and Sinhagad for Maratha historical forts; Mahabaleshwar, Matheran, and Lonavala for scenic Sahyadri mountain retreats; Alibaug, Ratnagiri, and Tarkarli for unspoiled Konkan beaches; and Ajanta and Ellora Caves near Chhatrapati Sambhajinagar for world-renowned UNESCO rock-cut architecture.
+                  </p>
+                  <p>
+                    For wildlife enthusiasts, eastern Maharashtra houses premier tiger sanctuaries like Tadoba-Andhari Tiger Reserve, which boasts one of India's highest Royal Bengal Tiger sighting probabilities. Spiritual travelers frequently embark on the 5 Jyotirlinga pilgrimage circuit or visit Shirdi Sai Baba Temple.
+                  </p>
+                </div>
+              </div>
+
+              {/* Contextual internal links with descriptive anchor text */}
+              <div className="mt-6 pt-6 border-t border-[#E8DEC8]">
+                <span className="text-xs font-bold text-[#6B5E4F] uppercase tracking-wider block mb-2.5">
+                  Explore Recommended Guides:
+                </span>
+                <div className="flex flex-wrap gap-2 text-xs">
+                  <button
+                    onClick={() => onNavigate('/blogs/ajanta-and-ellora-caves')}
+                    aria-label="Explore our comprehensive guide to Ajanta and Ellora Caves"
+                    className="font-semibold text-[#D95D0F] hover:underline bg-white px-3 py-1.5 rounded-lg border border-[#E0D6C4]"
+                  >
+                    Explore the Ajanta Caves & Kailasa Temple →
+                  </button>
+                  <button
+                    onClick={() => onNavigate('/blogs/mahabaleshwar-travel-guide')}
+                    aria-label="Discover the best hill stations in Maharashtra including Mahabaleshwar"
+                    className="font-semibold text-[#164E3D] hover:underline bg-white px-3 py-1.5 rounded-lg border border-[#E0D6C4]"
+                  >
+                    Discover the best hill stations in Maharashtra →
+                  </button>
+                  <button
+                    onClick={() => onNavigate('/destinations/mumbai')}
+                    aria-label="Read our complete Mumbai city travel guide"
+                    className="font-semibold text-[#D95D0F] hover:underline bg-white px-3 py-1.5 rounded-lg border border-[#E0D6C4]"
+                  >
+                    Read our Mumbai travel guide →
+                  </button>
+                  <button
+                    onClick={() => onNavigate('/blogs/ultimate-guide-lonavala-khandala')}
+                    aria-label="Plan a weekend trip to Lonavala and Khandala"
+                    className="font-semibold text-[#164E3D] hover:underline bg-white px-3 py-1.5 rounded-lg border border-[#E0D6C4]"
+                  >
+                    Plan a weekend trip to Lonavala & Khandala →
+                  </button>
+                  <button
+                    onClick={() => onNavigate('/blogs/discovering-konkan-coast')}
+                    aria-label="Explore Konkan beaches, seafood, and coastal villages"
+                    className="font-semibold text-[#D95D0F] hover:underline bg-white px-3 py-1.5 rounded-lg border border-[#E0D6C4]"
+                  >
+                    Explore Konkan's beaches & Malvani seafood →
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Question 2 */}
+            <div className="bg-[#FAF7F2] rounded-3xl p-8 border border-[#E8DEC8] flex flex-col justify-between">
+              <div>
+                <span className="text-[11px] font-bold uppercase tracking-wider text-[#164E3D] block mb-2">
+                  Seasonal Weather Guide
+                </span>
+                <h2 className="font-heading text-2xl font-bold text-[#24211D] mb-4">
+                  What is the best time to visit Maharashtra?
+                </h2>
+                <div className="space-y-4 text-sm text-[#4A3E31] leading-relaxed">
+                  <p className="font-medium text-[#1A1815] bg-white p-4 rounded-xl border-l-4 border-[#164E3D]">
+                    The best time to visit Maharashtra overall is between October and March, when pleasant daytime temperatures (18°C–28°C) and cool evenings make sightseeing, fort trekking, and beach activities comfortable. However, the optimal season varies significantly depending on whether you are visiting coastal beaches, mountain waterfalls, or tiger reserves.
+                  </p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs pt-2">
+                    <div className="p-3 bg-white rounded-xl border border-[#E8DEC8]">
+                      <strong className="text-[#164E3D] block mb-1">Winter (October to March):</strong>
+                      Ideal for beach watersports in Tarkarli, cave exploration at Ellora, wine tasting in Nashik, and Sahyadri fort walks.
+                    </div>
+                    <div className="p-3 bg-white rounded-xl border border-[#E8DEC8]">
+                      <strong className="text-[#D95D0F] block mb-1">Monsoon (July to September):</strong>
+                      Magical for roaring cascades in Malshej Ghat, lush Western Ghats trails, and misty viewpoints in Lonavala and Bhandardara.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Contextual internal links */}
+              <div className="mt-6 pt-6 border-t border-[#E8DEC8]">
+                <span className="text-xs font-bold text-[#6B5E4F] uppercase tracking-wider block mb-2.5">
+                  Plan by Season:
+                </span>
+                <div className="flex flex-wrap gap-2 text-xs">
+                  <button
+                    onClick={() => onNavigate('/blogs/best-monsoon-destinations-maharashtra')}
+                    aria-label="Read our complete monsoon destinations travel guide"
+                    className="font-semibold text-[#164E3D] hover:underline bg-white px-3 py-1.5 rounded-lg border border-[#E0D6C4]"
+                  >
+                    Read our monsoon destinations guide →
+                  </button>
+                  <button
+                    onClick={() => onNavigate('/travel-guide')}
+                    aria-label="View sample seasonal travel itineraries for Maharashtra"
+                    className="font-semibold text-[#D95D0F] hover:underline bg-white px-3 py-1.5 rounded-lg border border-[#E0D6C4]"
+                  >
+                    View sample seasonal itineraries →
+                  </button>
+                  <button
+                    onClick={() => onNavigate('/blogs/tadoba-wildlife-responsible-safari')}
+                    aria-label="Check the best months for Tadoba tiger safari sightings"
+                    className="font-semibold text-[#164E3D] hover:underline bg-white px-3 py-1.5 rounded-lg border border-[#E0D6C4]"
+                  >
+                    Check best months for Tadoba tiger safaris →
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Official Authoritative Resources & Independent Disclaimer */}
+          <div className="bg-[#FAF4EB] rounded-2xl p-6 sm:p-8 border border-[#E5DAC6]">
+            <h3 className="font-heading text-lg font-bold text-[#24211D] mb-3 flex items-center gap-2">
+              <ShieldCheck className="w-5 h-5 text-[#164E3D]" />
+              <span>Authoritative Official Tourism Resources & Editorial Disclosure</span>
+            </h3>
+            <p className="text-xs text-[#5C4D3D] leading-relaxed mb-4">
+              <strong>Editorial Transparency:</strong> This platform is an independent tourism portal dedicated to authentic cultural documentation, responsible ecotourism, and educational travel planning across Maharashtra, India. To verify state-administered tariffs, online e-permits, or official accommodations, refer to these verified authorities:
+            </p>
+            <div className="flex flex-wrap gap-4 text-xs">
+              <a
+                href="https://maharashtratourism.gov.in"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-bold text-[#164E3D] hover:text-[#D95D0F] hover:underline flex items-center gap-1.5"
+              >
+                <span>Official Maharashtra Tourism Development Corporation (MTDC) Portal</span>
+                <ArrowRight className="w-3 h-3" />
+              </a>
+              <a
+                href="https://asi.nic.in"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-bold text-[#164E3D] hover:text-[#D95D0F] hover:underline flex items-center gap-1.5"
+              >
+                <span>Archaeological Survey of India (ASI) Official Monument Records</span>
+                <ArrowRight className="w-3 h-3" />
+              </a>
+              <a
+                href="https://mahaecotourism.gov.in"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-bold text-[#164E3D] hover:text-[#D95D0F] hover:underline flex items-center gap-1.5"
+              >
+                <span>Maharashtra Forest Department Eco-Tourism Portal</span>
+                <ArrowRight className="w-3 h-3" />
+              </a>
+            </div>
           </div>
         </div>
       </section>

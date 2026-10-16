@@ -3,9 +3,10 @@ import { ArrowUp, Mail, CheckCircle2, AlertCircle, Heart, Phone, ShieldCheck } f
 
 interface FooterProps {
   onNavigate: (path: string) => void;
+  onOpenSeoAudit?: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
+export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenSeoAudit }) => {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
@@ -226,6 +227,19 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   Contact Helpdesk
                 </button>
               </li>
+              {onOpenSeoAudit && (
+                <li className="pt-1">
+                  <button
+                    onClick={onOpenSeoAudit}
+                    className="text-[#FFA96B] hover:text-white transition-colors flex items-center gap-1.5 font-medium"
+                  >
+                    <span>SEO Audit & Keyword Map</span>
+                    <span className="text-[10px] bg-[#D95D0F] text-white px-1.5 py-0.5 rounded-full font-bold uppercase tracking-wider">
+                      Audit
+                    </span>
+                  </button>
+                </li>
+              )}
             </ul>
           </div>
         </div>

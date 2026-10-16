@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MapPin, Clock, Calendar, Compass, Plane, Train, Car, Utensils, AlertTriangle, ArrowRight, ChevronRight, X, Sparkles, BookOpen } from 'lucide-react';
 import { Destination } from '../types';
 import { DESTINATIONS } from '../data/destinations';
 import { BLOGS } from '../data/blogs';
 import { SafeImage } from '../components/SafeImage';
+import { applySEO } from '../utils/seo';
+import { KEYWORD_MAPPING } from '../data/seoKeywords';
 
 interface DestinationDetailProps {
   slug: string;
@@ -17,6 +19,44 @@ export const DestinationDetail: React.FC<DestinationDetailProps> = ({
   const [selectedPhoto, setSelectedPhoto] = useState<{ url: string; caption: string; credit: string } | null>(null);
 
   const destination = DESTINATIONS.find((d) => d.slug === slug) || DESTINATIONS[0];
+
+  useEffect(() => {
+    const mapped = KEYWORD_MAPPING.find((k) => k.targetUrl === `/destinations/${destination.slug}`);
+    applySEO(
+      `/destinations/${destination.slug}`,
+      mapped?.seoTitle || `${destination.name} Travel Guide – Places to Visit in Maharashtra`,
+      mapped?.metaDescription || destination.shortDescription || destination.overview.join(' ').slice(0, 155),
+      destination.heroImage,
+      {
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'TouristDestination',
+            name: destination.name,
+            alternateName: destination.marathiName,
+            description: destination.shortDescription || destination.overview.join(' '),
+            url: `https://maharashtratourismguidebynbatra.vercel.app/destinations/${destination.slug}`,
+            image: destination.heroImage,
+            containedInPlace: {
+              '@type': 'AdministrativeArea',
+              name: 'Maharashtra',
+              addressRegion: 'Maharashtra',
+              addressCountry: 'IN'
+            },
+            touristType: [destination.category]
+          },
+          {
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://maharashtratourismguidebynbatra.vercel.app/' },
+              { '@type': 'ListItem', position: 2, name: 'Destinations', item: 'https://maharashtratourismguidebynbatra.vercel.app/destinations' },
+              { '@type': 'ListItem', position: 3, name: destination.name, item: `https://maharashtratourismguidebynbatra.vercel.app/destinations/${destination.slug}` }
+            ]
+          }
+        ]
+      }
+    );
+  }, [destination]);
 
   const relatedArticles = BLOGS.filter(
     (b) =>

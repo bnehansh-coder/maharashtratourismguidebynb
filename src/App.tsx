@@ -19,6 +19,8 @@ import { TravelGuidePage } from './pages/TravelGuide';
 import { ContactPage } from './pages/Contact';
 import { BookmarksPage } from './pages/Bookmarks';
 import { useSavedArticles } from './hooks/useSavedArticles';
+import { applySEO } from './utils/seo';
+import { SeoAuditModal } from './components/SeoAuditModal';
 
 export default function App() {
   // Parse initial path from hash or pathname
@@ -32,7 +34,13 @@ export default function App() {
 
   const [currentPath, setCurrentPath] = useState<string>(getInitialPath);
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
+  const [isSeoAuditOpen, setIsSeoAuditOpen] = useState<boolean>(false);
   const { savedSlugs, toggleSave } = useSavedArticles();
+
+  // Dynamically synchronize document title, meta descriptions, canonical URLs, and schema
+  useEffect(() => {
+    applySEO(currentPath);
+  }, [currentPath]);
 
   // Handle browser back/forward and hash changes
   useEffect(() => {
@@ -189,8 +197,18 @@ export default function App() {
         onNavigate={navigateTo}
       />
 
+      {/* Global SEO Audit & Keyword Mapping Modal */}
+      <SeoAuditModal
+        isOpen={isSeoAuditOpen}
+        onClose={() => setIsSeoAuditOpen(false)}
+        onNavigate={navigateTo}
+      />
+
       {/* Global Footer */}
-      <Footer onNavigate={navigateTo} />
+      <Footer
+        onNavigate={navigateTo}
+        onOpenSeoAudit={() => setIsSeoAuditOpen(true)}
+      />
     </div>
   );
 }
