@@ -1,0 +1,6 @@
+{
+  "name": "Maharashtra Tourism – Explore the Land of Wonders",
+  "description": "Premium travel portal and editorial magazine discovering Maharashtra's historic Maratha forts, golden Konkan beaches, scenic Sahyadri hill stations, UNESCO caves, wildlife sanctuaries, and authentic regional cuisine.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
